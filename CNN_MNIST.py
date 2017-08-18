@@ -4,7 +4,7 @@ from keras.datasets import mnist
 from keras.layers import Dense, Flatten
 from keras.layers import Conv2D, MaxPooling2D
 from keras.models import Sequential
-# import matplotlib.pylab as plt
+from matplotlib import pyplot as plt
 
 batch_size = 100
 num_classes = 10
@@ -50,7 +50,7 @@ model.add(MaxPooling2D(pool_size=(2, 2)))
 
 model.add(Flatten())
 
-model.add(Dense(units=1000, kernel_initializer='uniform', activation='relu'))
+model.add(Dense(units=300, kernel_initializer='uniform', activation='relu'))
 model.add(Dense(num_classes, activation='softmax'))
 
 model.compile(loss=keras.losses.categorical_crossentropy,
@@ -77,7 +77,7 @@ model.fit(x_train, y_train,
 score = model.evaluate(x_test, y_test, verbose=0)
 print('Test loss:', score[0])
 print('Test accuracy:', score[1])
-# plt.plot(range(1, 11), history.acc)
-# plt.xlabel('Epochs')
-# plt.ylabel('Accuracy')
-# plt.show()
+plt.plot(range(1, 11), history.acc)
+plt.xlabel('Epochs')
+plt.ylabel('Accuracy')
+plt.show()
